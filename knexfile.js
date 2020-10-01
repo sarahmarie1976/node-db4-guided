@@ -11,5 +11,18 @@ module.exports = {
     seeds: {
       directory: './data/seeds'
     },
+    pool: {
+      afterCreate: (conn, done) =>{
+        conn.run('PRAGMA foreign_keys = ON', done);
+
+        /*  
+          The code above is running a SQL command that makes sense to SQLite
+          it is going to tell SQLite that we intend for foreign key constraints
+          to be active
+
+          this is the enforcement of foreign keys 
+        */ 
+      }
+    }
   },
 };
